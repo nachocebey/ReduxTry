@@ -1,7 +1,9 @@
-import pokeList from '../../actions/pokeList'
+import pokeList from '../../actions/pokeList';
 
 const initialState = {
   list: [],
+  buttonState: true,
+  checkedPokemons: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -9,6 +11,10 @@ const reducer = (state = initialState, action) => {
     switch (action.type) {
       case pokeList.GET_LIST:
         return { ...state, list: action.list };
+      case pokeList.SET_BUTTON:
+        return { ...state, buttonState: action.buttonState };
+      case pokeList.SET_CHECKED:
+        return { ...state, checkedPokemons: action.checkedPokemons };
       default:
         return state;
     }

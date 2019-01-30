@@ -3,21 +3,20 @@ export const checkButtonState = (e, max) => {
   if (e === max) {
     buttonState = false;
   }
-  return buttonState
-}
+  return buttonState;
+};
 
 export const removeItemFromArray = (e, array) => {
-  if(array != null){
+  if (array != null) {
     const index = array.indexOf(e);
     if (index !== -1) {
       array.splice(index, 1);
     }
-  
-    return array
+    return array;
   }
-}
+};
 
 export const getPokeInfo = (url) => fetch(url)
-  .then( response => response.json())
+  .then(response => response.json());
 
 export default removeItemFromArray;
