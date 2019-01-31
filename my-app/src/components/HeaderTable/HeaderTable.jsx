@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import './HeaderTable.css';
 
-export class HeaderTable extends Component {
+class HeaderTable extends Component {
   render() {
     return (
       <tr>

@@ -2,21 +2,20 @@ import React from 'react';
 import './Button.css';
 import PropTypes from 'prop-types';
 
-export const Button = ({
+const Button = ({
   url,
   history,
   name,
   buttonState,
-}) => {
-  return (
-    <button
-      type="button"
-      onClick={() => history.push(url)}
-      disabled={buttonState}
-    >
-      {name}
-    </button>
-  );
+}) => { return (
+  <button
+    type="button"
+    onClick={() => history.push(url)}
+    disabled={buttonState}
+  >
+    {name}
+  </button>
+);
 };
 
 Button.propTypes = {

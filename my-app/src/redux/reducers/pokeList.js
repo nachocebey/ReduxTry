@@ -4,6 +4,7 @@ const initialState = {
   list: [],
   buttonState: true,
   checkedPokemons: [],
+  pokemon: {},
 };
 
 const reducer = (state = initialState, action) => {
@@ -14,7 +15,7 @@ const reducer = (state = initialState, action) => {
       case pokeList.SET_BUTTON:
         return { ...state, buttonState: action.buttonState };
       case pokeList.SET_CHECKED:
-        return { ...state, checkedPokemons: action.checkedPokemons };
+        return { ...state, checkedPokemons: action.checkedList };
       default:
         return state;
     }

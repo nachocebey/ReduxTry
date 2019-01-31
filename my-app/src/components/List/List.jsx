@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Row from '../../components/Row/Row';
-import { Button } from '../../components/Button/Button';
-import { HeaderTable } from '../../components/HeaderTable/HeaderTable';
-import { checkButtonState, removeItemFromArray, getPokeInfo } from '../../services/services'
 import { connect } from 'react-redux';
-import { getPokeList, setButtonState, setCheckedPokemonsState } from '../../actions/pokeList';
 
+import Row from '../Row/Row';
+import Button from '../Button/Button';
+import HeaderTable from '../HeaderTable/HeaderTable';
+import { checkButtonState, removeItemFromArray, getPokeInfo } from '../../services/services';
+import { getPokeList, setButtonState, setCheckedPokemonsState } from '../../actions/pokeList';
 import './List.css';
 
 
@@ -38,27 +38,35 @@ class List extends Component {
     const name = sender.currentTarget.attributes.name.value;
 
     if (checkState) {
-      checkedPokemonsCopy = [...checkedPokemonsCopy, name];
-    }
-    else {
+      checkedPokemonsCopy.push(name);
+    } else {
       checkedPokemonsCopy = removeItemFromArray(name, checkedPokemonsCopy);
     }
-    let buttonStateCopy = checkButtonState(checkedPokemonsCopy.length, this.props.maxSelection);
+    const buttonStateCopy = checkButtonState(checkedPokemonsCopy.length, this.props.maxSelection);
+    console.log(this.props.checkedPokemons[0]);
+    console.log(this.props.checkedPokemons[1]);
+    debugger;
+
 
     this.props.setButtonState(buttonStateCopy);
-    this.props.setCheckedPokemonsState(checkedPokemonsCopy)
+    this.props.setCheckedPokemonsState(checkedPokemonsCopy);
   }
 
   componentDidMount = () => {
-    const pokeUrl = `https://pokeapi.co/api/v2/pokemon/`;
+    const pokeUrl = 'https://pokeapi.co/api/v2/pokemon/';
     getPokeInfo(pokeUrl)
-      .then(data => this.props.getPokeList(data.results))
+      .then(data => this.props.getPokeList(data.results));
   }
 
   render() {
     return (
       <div>
-        <Button history={this.props.history} url={`Comparision/${this.props.checkedPokemons[0]}/${this.props.checkedPokemons[1]}`} name={"Compare"} buttonState={this.props.buttonState} />
+        <Button
+          history={this.props.history}
+          url={`Comparision/${this.props.checkedPokemons[0]}/${this.props.checkedPokemons[1]}`}
+          name="Compare"
+          buttonState={this.props.buttonState}
+        />
         <table className="table table-bordered">
           <thead class="thead-dark">
             <HeaderTable />
@@ -66,7 +74,12 @@ class List extends Component {
           <tbody>
             {
               this.props.pokeList.slice(0, 40).map(pokemon => (
-                <Row history={this.props.history} pokemon={pokemon} handleInputChange={this.handleInputChange} />
+                <Row
+                  key={pokemon.name}
+                  history={this.props.history}
+                  pokemon={pokemon}
+                  handleInputChange={this.handleInputChange}
+                />
               ))
             }
           </tbody>
@@ -82,6 +95,5 @@ const mapStateToProps = state => ({
   checkedPokemons: state.pokeList.checkedPokemons,
 });
 
-export default connect(mapStateToProps, { getPokeList, setButtonState, setCheckedPokemonsState })(List);
-
-
+export default connect(mapStateToProps,
+  { getPokeList, setButtonState, setCheckedPokemonsState })(List);

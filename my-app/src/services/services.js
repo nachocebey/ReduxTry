@@ -18,5 +18,3 @@ export const removeItemFromArray = (e, array) => {
 
 export const getPokeInfo = (url) => fetch(url)
   .then(response => response.json());
-
-export default removeItemFromArray;
