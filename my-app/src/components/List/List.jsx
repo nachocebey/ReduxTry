@@ -22,34 +22,20 @@ class List extends Component {
     setButtonState: PropTypes.func,
   };
 
-  // constructor(props) {
-  //   super(props)
-  //   this.state = {
-  //     pokeList: [],
-  //     checkedPokemons: [],
-  //     maxSelection: 2,
-  //     buttonState: true
-  //   };
-  // }
-
   handleInputChange = (sender) => {
-    let checkedPokemonsCopy = this.props.checkedPokemons;
+    let { checkedPokemons } = this.props;
     const checkState = sender.currentTarget.checked;
     const name = sender.currentTarget.attributes.name.value;
 
     if (checkState) {
-      checkedPokemonsCopy.push(name);
+      checkedPokemons.push(name);
     } else {
-      checkedPokemonsCopy = removeItemFromArray(name, checkedPokemonsCopy);
+      checkedPokemons = removeItemFromArray(name, checkedPokemons);
     }
-    const buttonStateCopy = checkButtonState(checkedPokemonsCopy.length, this.props.maxSelection);
-    console.log(this.props.checkedPokemons[0]);
-    console.log(this.props.checkedPokemons[1]);
-    debugger;
-
-
+    this.props.setCheckedPokemonsState(this.props.checkedPokemons);
+    const buttonStateCopy = checkButtonState(checkedPokemons.length, this.props.maxSelection);
     this.props.setButtonState(buttonStateCopy);
-    this.props.setCheckedPokemonsState(checkedPokemonsCopy);
+    debugger;
   }
 
   componentDidMount = () => {
@@ -63,7 +49,7 @@ class List extends Component {
       <div>
         <Button
           history={this.props.history}
-          url={`Comparision/${this.props.checkedPokemons[0]}/${this.props.checkedPokemons[1]}`}
+          url="Comparision"
           name="Compare"
           buttonState={this.props.buttonState}
         />

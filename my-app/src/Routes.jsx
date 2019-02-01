@@ -8,7 +8,7 @@ const getRoutes = () => (
   <Fragment>
     <Route exact path="/list" component={App} />
     <Route exact path="/Details/:pokeId" component={Details} />
-    <Route exact path="/Comparision/:pokeId1/:pokeId2" component={Comparision} />
+    <Route exact path="/Comparision" component={Comparision} />
   </Fragment>
 );
 

@@ -1,22 +1,17 @@
 import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Header from '../../components/Header/Header';
 import DetailsList from '../../components/DetailsList/DetailsList';
-
+import { setCheckedPokemonsState } from '../../actions/pokeList';
 
 class Comparision extends Component {
   static propTypes = {
+    selectedPokemons: PropTypes.array,
+    checkedPokemons: PropTypes.array,
     params: PropTypes.object,
     match: PropTypes.object,
   };
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      pokeId1: this.props.match.params.pokeId1,
-      pokeId2: this.props.match.params.pokeId2,
-    };
-  }
 
   render() {
     debugger;
@@ -24,13 +19,17 @@ class Comparision extends Component {
       <div>
         <Fragment>
           <Header />
-          <DetailsList pokeId={this.state.pokeId1} />
+          <DetailsList pokeId={this.props.checkedPokemons[0]} />
           <div>VS</div>
-          <DetailsList pokeId={this.state.pokeId2} />
+          <DetailsList pokeId={this.props.checkedPokemons[1]} />
         </Fragment>
       </div>
     );
   }
 }
 
-export default Comparision;
+const mapStateToProps = state => ({
+  checkedPokemons: state.pokeList.checkedPokemons,
+});
+
+export default connect(mapStateToProps, { setCheckedPokemonsState })(Comparision);

@@ -12,14 +12,6 @@ class DetailsList extends Component {
     setPokemonInfo: PropTypes.func,
   };
 
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     pokemon: {},
-  //     pokeId: this.props.pokeId,
-  //   };
-  // }
-
   componentDidMount() {
     const pokeUrl = `https://pokeapi.co/api/v2/pokemon/${this.props.pokeId}/`;
     getPokeInfo(pokeUrl)
@@ -27,7 +19,6 @@ class DetailsList extends Component {
   }
 
   render() {
-    debugger;
     return (
       <div>
         <div>
