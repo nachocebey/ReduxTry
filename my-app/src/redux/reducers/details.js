@@ -1,14 +1,18 @@
 import details from '../../actions/details';
 
 const initialState = {
-  pokemon: {},
+  pokemon: [],
+  pokemonsVersus: [],
 };
 
 const reducer = (state = initialState, action) => {
+  debugger;
   if (action.type !== null) {
     switch (action.type) {
       case details.SET_POKEMON:
         return { ...state, pokemon: action.pokemon };
+      case details.SET_VS_POKEMON:
+        return { ...state, pokemonsVersus: action.pokemonsVersus };
       default:
         return state;
     }

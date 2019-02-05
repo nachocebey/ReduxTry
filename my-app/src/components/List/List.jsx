@@ -9,7 +9,6 @@ import { checkButtonState, removeItemFromArray, getPokeInfo } from '../../servic
 import { getPokeList, setButtonState, setCheckedPokemonsState } from '../../actions/pokeList';
 import './List.css';
 
-
 class List extends Component {
   static propTypes = {
     getPokeList: PropTypes.func,
@@ -35,7 +34,6 @@ class List extends Component {
     this.props.setCheckedPokemonsState(this.props.checkedPokemons);
     const buttonStateCopy = checkButtonState(checkedPokemons.length, this.props.maxSelection);
     this.props.setButtonState(buttonStateCopy);
-    debugger;
   }
 
   componentDidMount = () => {
