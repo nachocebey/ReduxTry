@@ -29,7 +29,7 @@ class Row extends Component {
           </h6>
         </td>
         <td>
-          <Button history={this.props.history} url={`Details/${name}`} name="Get Pokemon Info" />
+          <Button history={this.props.history} url={`Details/${name}`} name="Get Pokemon Info" buttonState={false} />
         </td>
       </tr>
     );

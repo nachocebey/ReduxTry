@@ -7,7 +7,7 @@ const Button = ({
   history,
   name,
   buttonState,
-}) => { return (
+}) => (
   <button
     type="button"
     onClick={() => history.push(url)}
@@ -16,7 +16,6 @@ const Button = ({
     {name}
   </button>
 );
-};
 
 Button.propTypes = {
   url: PropTypes.string.isRequired,
@@ -25,6 +24,5 @@ Button.propTypes = {
   innerHtml: PropTypes.string,
   buttonState: PropTypes.bool,
 };
-
 
 export default Button;

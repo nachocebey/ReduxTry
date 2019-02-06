@@ -6,7 +6,6 @@ const initialState = {
 };
 
 const reducer = (state = initialState, action) => {
-  debugger;
   if (action.type !== null) {
     switch (action.type) {
       case details.SET_POKEMON:

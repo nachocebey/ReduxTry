@@ -1,3 +1,5 @@
+import Request from 'superagent';
+
 export const checkButtonState = (e, max) => {
   let buttonState = true;
   if (e === max) {
@@ -6,6 +8,7 @@ export const checkButtonState = (e, max) => {
   return buttonState;
 };
 
+// eslint-disable-next-line consistent-return
 export const removeItemFromArray = (e, array) => {
   if (array != null) {
     const index = array.indexOf(e);
@@ -15,6 +18,5 @@ export const removeItemFromArray = (e, array) => {
     return array;
   }
 };
-
-export const getPokeInfo = (url) => fetch(url)
-  .then(response => response.json());
+export const getPokeInfo = (url) => Request.get(url)
+  .then(response => response.body);

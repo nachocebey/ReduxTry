@@ -20,9 +20,9 @@ class Comparision extends Component {
   componentDidMount() {
     // TODO Bucle;
     const array = [];
-
     const pokeUrl = `https://pokeapi.co/api/v2/pokemon/${this.props.checkedPokemons[0]}/`;
     const pokeUrl2 = `https://pokeapi.co/api/v2/pokemon/${this.props.checkedPokemons[1]}/`;
+
     getPokeInfo(pokeUrl)
       .then(data => this.props.setPokemonInfo(data))
       .then(element => { array.push(element.pokemon); });
@@ -30,7 +30,7 @@ class Comparision extends Component {
     getPokeInfo(pokeUrl2)
       .then(data => this.props.setPokemonInfo(data))
       .then(element => { array.push(element.pokemon); })
-      .then(x => { this.props.setPokemonVersus(array); });
+      .then(() => { this.props.setPokemonVersus(array); });
   }
 
   render() {
