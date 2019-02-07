@@ -6,25 +6,20 @@ import { connect } from 'react-redux';
 import Row from '../Row/Row';
 import Button from '../Button/Button';
 import HeaderTable from '../HeaderTable/HeaderTable';
-import ErrorFromApi from '../ErrorFromApi/ErrorFromApi';
-import { checkButtonState, removeItemFromArray, getPokeInfo } from '../../services/services';
+import { checkButtonState, removeItemFromArray } from '../../services/services';
 import {
-  getPokeList, setButtonState, setCheckedPokemonsState, setErrorMessage,
+  setButtonState, setCheckedPokemonsState, setErrorMessage,
 } from '../../actions/pokeList';
 import './List.css';
 
 class List extends Component {
   static propTypes = {
-    getPokeList: PropTypes.func,
+    setButtonState: PropTypes.func,
+    setCheckedPokemonsState: PropTypes.func,
     pokeList: PropTypes.array,
     checkedPokemons: PropTypes.array,
-    maxSelection: PropTypes.number,
     history: PropTypes.object,
     buttonState: PropTypes.bool,
-    setCheckedPokemonsState: PropTypes.func,
-    setButtonState: PropTypes.func,
-    setErrorMessage: PropTypes.func,
-    message: PropTypes.string,
   };
 
   handleInputChange = (sender) => {
@@ -43,17 +38,10 @@ class List extends Component {
   }
 
   componentDidMount = () => {
-    const pokeUrl = 'https://pokeapi.co/api/v2/pokemo/';
-
-    getPokeInfo(pokeUrl)
-      .then(data => this.props.getPokeList(data.results))
-      .catch(this.props.setErrorMessage('ERROR: CANNOT CONNECT WITH THE POKEAPI'));
-
     this.props.setButtonState(true);
   }
 
   render() {
-    debugger;
     return (
       <div>
         <Button
@@ -64,7 +52,6 @@ class List extends Component {
         />
         <table className="table table-bordered">
           <thead class="thead-dark">
-            <ErrorFromApi message={this.props.message} />
             <HeaderTable />
           </thead>
           <tbody>
@@ -86,13 +73,11 @@ class List extends Component {
 }
 
 const mapStateToProps = state => ({
-  pokeList: state.pokeList.list,
   buttonState: state.pokeList.buttonState,
   checkedPokemons: state.pokeList.checkedPokemons,
-  message: state.pokeList.message,
 });
 
 export default connect(mapStateToProps,
   {
-    getPokeList, setButtonState, setCheckedPokemonsState, setErrorMessage,
+    setButtonState, setCheckedPokemonsState, setErrorMessage,
   })(List);

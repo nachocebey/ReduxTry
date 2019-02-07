@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import error from '../../services/error.png';
 
-class DetailsList extends Component {
+class ErrorFromApi extends Component {
   static propTypes = {
     message: PropTypes.string,
   };
 
-
   render() {
     return (
       <div>
-        <h4>{this.props.message}</h4>
+        <h6>{this.props.message}</h6>
+        <img src={error} alt="Error" width="30" height="30" />
       </div>
     );
   }
 }
 
-export default DetailsList;
+export default ErrorFromApi;

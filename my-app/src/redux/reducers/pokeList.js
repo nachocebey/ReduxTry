@@ -6,10 +6,10 @@ const initialState = {
   checkedPokemons: [],
   pokemon: {},
   message: '',
+  loadingState: true,
 };
 
 const reducer = (state = initialState, action) => {
-  debugger;
   if (action.type !== null) {
     switch (action.type) {
       case pokeList.GET_LIST:
@@ -20,11 +20,12 @@ const reducer = (state = initialState, action) => {
         return { ...state, checkedPokemons: action.checkedList };
       case pokeList.SET_ERROR_MESSAGE:
         return { ...state, message: action.message };
+      case pokeList.SET_LOADING_STATE:
+        return { ...state, loadingState: action.loadingState };
       default:
         return state;
     }
   }
   return state;
 };
-
 export default reducer;

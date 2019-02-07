@@ -12,7 +12,7 @@ class DetailsList extends Component {
 
   render() {
     return (
-      <div>
+      <div align="center">
         <div>
           Id:
           {this.props.pokemon && this.props.pokemon.id}
