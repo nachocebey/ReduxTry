@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -7,6 +8,7 @@ import DetailsList from '../../components/DetailsList/DetailsList';
 import { setCheckedPokemonsState, setErrorMessage } from '../../actions/pokeList';
 import { getPokeInfo } from '../../services/services';
 import { setPokemonInfo, setPokemonVersus } from '../../actions/details';
+import './Comparision.css';
 
 class Comparision extends Component {
   static propTypes = {
@@ -23,10 +25,9 @@ class Comparision extends Component {
   componentDidMount() {
     const array = [];
     const { checkedPokemons } = this.props;
-    debugger;
     if (checkedPokemons.length > 0) {
       let hola;
-      for (let index = 0; index < checkedPokemons.length; index++) {
+      for (let index = 0; index < checkedPokemons.length; index += 1) {
         const pokeUrl = `https://pokeapi.co/api/v2/pokemon/${checkedPokemons[index]}/`;
         hola = getPokeInfo(pokeUrl)
           .then(data => this.props.setPokemonInfo(data))
@@ -45,10 +46,18 @@ class Comparision extends Component {
           <Header />
           {this.props.pokemonsVersus.length > 0
             ? (
-              <div>
-                <DetailsList pokemon={this.props.pokemonsVersus[0]} />
-                <div>VS</div>
-                <DetailsList pokemon={this.props.pokemonsVersus[1]} />
+              <div class="container">
+                <div class="row">
+                  <div class="col">
+                    <DetailsList pokemon={this.props.pokemonsVersus[0]} />
+                  </div>
+                  <div class="col">
+                    VS
+                  </div>
+                  <div class="col">
+                    <DetailsList pokemon={this.props.pokemonsVersus[1]} />
+                  </div>
+                </div>
               </div>
             ) : (
               <div>

@@ -32,13 +32,18 @@ class List extends Component {
     } else {
       checkedPokemons = removeItemFromArray(name, checkedPokemons);
     }
-    this.props.setCheckedPokemonsState(this.props.checkedPokemons);
+    this.props.setCheckedPokemonsState(checkedPokemons);
     const buttonStateCopy = checkButtonState(checkedPokemons.length, 2);
     this.props.setButtonState(buttonStateCopy);
   }
 
   componentDidMount = () => {
     this.props.setButtonState(true);
+  }
+
+  componentWillUnmount= () => {
+    debugger;
+    this.props.setCheckedPokemonsState([]);
   }
 
   render() {
