@@ -20,3 +20,4 @@ export const removeItemFromArray = (e, array) => {
 };
 export const getPokeInfo = (url) => Request.get(url)
   .then(response => response.body);
+

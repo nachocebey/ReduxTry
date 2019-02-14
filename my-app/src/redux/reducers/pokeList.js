@@ -10,7 +10,6 @@ const initialState = {
 };
 
 const reducer = (state = initialState, action) => {
-  debugger;
   if (action.type !== null) {
     switch (action.type) {
       case pokeList.GET_LIST:
@@ -18,7 +17,6 @@ const reducer = (state = initialState, action) => {
       case pokeList.SET_BUTTON:
         return { ...state, buttonState: action.button };
       case pokeList.SET_CHECKED:
-        debugger;
         return { ...state, checkedPokemons: action.checkedList };
       case pokeList.SET_ERROR_MESSAGE:
         return { ...state, message: action.message };

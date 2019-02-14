@@ -42,7 +42,6 @@ class List extends Component {
   }
 
   componentWillUnmount= () => {
-    debugger;
     this.props.setCheckedPokemonsState([]);
   }
 

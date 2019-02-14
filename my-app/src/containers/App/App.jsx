@@ -2,9 +2,7 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Header from '../../components/Header/Header';
-import ErrorFromApi from '../../components/ErrorFromApi/ErrorFromApi';
 import List from '../../components/List/List';
-import Loading from '../../components/Loading/Loading';
 import { getPokeInfo } from '../../services/services';
 import {
   getPokeList, setErrorMessage, setLoadingState,
@@ -18,38 +16,29 @@ class App extends Component {
     getPokeList: PropTypes.func,
     setErrorMessage: PropTypes.func,
     pokeList: PropTypes.array,
-    message: PropTypes.string,
-    isLoading: PropTypes.bool,
     setLoadingState: PropTypes.func,
   };
 
   componentDidMount = () => {
     const pokeUrl = 'https://pokeapi.co/api/v2/pokemon/';
     getPokeInfo(pokeUrl)
-      .then(data => this.props.getPokeList(data.results))
       .then(x => new Promise(resolve => setTimeout(() => resolve(x), 1000)))
+      .then(data => this.props.getPokeList(data.results))
       .then(() => this.props.setLoadingState(false))
-      .catch(error => this.props.setErrorMessage(error.message));
+
+      .catch(error => this.props.setErrorMessage(error.message))
+      .then(() => this.props.setLoadingState(false));
   }
 
   render() {
     return (
       <div>
-        {this.props.isLoading
-          ? (
-            <div>
-              <Loading />
-            </div>
-          ) : (
-            <div>
-              <Fragment>
-                <Header />
-                <List history={this.props.history} pokeList={this.props.pokeList} />
-                <ErrorFromApi message={this.props.message} />
-              </Fragment>
-            </div>
-
-          )}
+        <div>
+          <Fragment>
+            <Header />
+            <List history={this.props.history} pokeList={this.props.pokeList} />
+          </Fragment>
+        </div>
       </div>
     );
   }
@@ -58,7 +47,6 @@ class App extends Component {
 const mapStateToProps = state => ({
   pokeList: state.pokeList.list,
   message: state.pokeList.message,
-  isLoading: state.pokeList.loadingState,
 });
 
 export default connect(mapStateToProps,
