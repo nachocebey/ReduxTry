@@ -6,7 +6,7 @@ import Comparision from './containers/Comparison/Comparision';
 
 const getRoutes = () => (
   <Fragment>
-    <Route exact path="/list" component={App} />
+    <Route exact path="/" component={App} />
     <Route exact path="/Details/:pokeId" component={Details} />
     <Route exact path="/Comparision" component={Comparision} />
   </Fragment>

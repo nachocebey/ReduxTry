@@ -12,31 +12,36 @@ class DetailsList extends Component {
 
   render() {
     return (
-      <div align="center">
-        <div>
-          Id:
-          {this.props.pokemon && this.props.pokemon.id}
-        </div>
-        <div>
-          Name:
-          {this.props.pokemon && this.props.pokemon.name}
-        </div>
-        <div>
-          Height:
-          {this.props.pokemon && this.props.pokemon.height}
-        </div>
-        <div>
-          Weight:
-          {this.props.pokemon && this.props.pokemon.weight}
-        </div>
-        <div>
-          Base Experience:
-          {this.props.pokemon && this.props.pokemon.base_experience}
-        </div>
-        <div>
-          <img src={this.props.pokemon && this.props.pokemon.sprites && this.props.pokemon.sprites.front_default} alt="Logo" />
-        </div>
-      </div>
+      <table class="table tableDetails">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{this.props.pokemon && this.props.pokemon.id}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{this.props.pokemon && this.props.pokemon.name}</td>
+            </tr>
+            <tr>
+                <th>Height</th>
+                <td>{this.props.pokemon && this.props.pokemon.height}</td>
+            </tr>
+            <tr>
+                <th>Weight</th>
+                <td>{this.props.pokemon && this.props.pokemon.weight}</td>
+            </tr>
+            <tr>
+                <th>Base Experience</th>
+                <td>{this.props.pokemon && this.props.pokemon.base_experience}</td>
+            </tr>
+            <tr>
+                <th>Sprite</th>
+                <td>          
+                  <img src={this.props.pokemon && this.props.pokemon.sprites && this.props.pokemon.sprites.front_default} alt="Logo" />
+                </td>
+            </tr>
+        </tbody>
+      </table>
     );
   }
 }

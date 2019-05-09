@@ -15,7 +15,6 @@ class Loading extends Component {
   }
 
   render() {
-    debugger;
     if (this.props.isLoading) {
       return (
         <div align="center">
